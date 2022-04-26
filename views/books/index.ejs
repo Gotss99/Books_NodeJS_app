@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../components/head.ejs') %>
+        <title>Books</title>
+    </head>
+    <body class="container">
+        <%- include('../components/navbar.ejs') %> <% if(messages.success) { %>
+        <div class="alert alert-success"><%=messages.success%></div>
+        <% } %>
+
+        <div class="card mt-5 mb-5">
+            <ul class="nav nav-pills w-100">
+                <li class="nav-link mr-auto">
+                    <a href="/logout" class="btn btn-danger"
+                        ><i class="fa fa-arrow-circle-left"></i> Logout</a
+                    >
+                </li>
+
+                <li class="nav-link ml-auto">
+                    <i class="fa fa-user"></i>
+                    <strong>Hello <%= admin %></strong>
+                </li>
+            </ul>
+            <div class="card-header">
+                <ul class="nav nav-pills w-100">
+                    <li class="nav-link">Book</li>
+                    <li class="nav-link ml-auto">
+                        <a href="/books/add" class="nav-link active">
+                            <i class="fas fa-plus-circle"></i> Add Book</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Price</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Image</th>
+                            <th width="200px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% Object.values(books ).forEach((item)=> { %>
+                        <tr>
+                            <td>฿<%= item.price %></td>
+                            <td><%= item.name %></td>
+                            <td><%= item.author %></td>
+                            <td>
+                                <img
+                                    src="/images/books/<%= item.image %>"
+                                    alt=""
+                                    class="img-thumbnail"
+                                    width="60px"
+                                />
+                            </td>
+                            <td>
+                                <a
+                                    href="/books/edit/<%= item._id %> "
+                                    class="btn btn-success"
+                                    >Edit</a
+                                >
+                                <a
+                                    href="/books/delete/<%= item._id %> "
+                                    class="btn btn-danger"
+                                    onclick="return confirm('Are you sure ?') "
+                                    >Delete</a
+                                >
+                            </td>
+                        </tr>
+
+                        <% }) %>
+                    </tbody>
+                </table>
+
+                <% if(typeof books == 'undefined') { %>
+                <p class="text-center">No book found!</p>
+                <% } %>
+            </div>
+        </div>
+
+        <%-include('../components/footer.ejs')%>
+    </body>
+</html>

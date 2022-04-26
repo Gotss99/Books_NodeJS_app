@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>สมัครสมาชิก</title>
+        <%- include('components/head.ejs') %>
+    </head>
+    <body>
+        <%- include('components/navbar.ejs') %>
+        <!-- why section -->
+        <section class="why_section layout_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="full">
+                            <h1>Register</h1>
+
+                            <form action="/register" class="mt-4" method="POST">
+                                <% if(typeof message !== 'undefined') { %>
+
+                                <p style="color: red"><%= message %></p>
+
+                                <% } %>
+                                <fieldset>
+                                    <input
+                                        type="text"
+                                        placeholder="username"
+                                        name="username"
+                                        required
+                                    />
+                                    <input
+                                        type="password"
+                                        placeholder="password"
+                                        name="password"
+                                        required
+                                    />
+                                    <input
+                                        type="password"
+                                        placeholder="Confirm password"
+                                        name="c_password"
+                                        required
+                                    />
+                                </fieldset>
+                                <input type="submit" value="สมัครสมาชิก" />
+                                <p></p>
+                                <span>ถ้าป็นสมาชิกอยู่แล้ว ? </span
+                                ><a href="/form-login">เข้าสู่ระบบ</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end why section -->
+
+        <%- include('components/footer.ejs') %>
+    </body>
+</html>

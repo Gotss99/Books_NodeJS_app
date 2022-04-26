@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>เข้าสู่ระบบ</title>
+        <%- include('components/head.ejs') %>
+    </head>
+    <body>
+        <%- include('components/navbar.ejs') %>
+        <!-- why section -->
+        <section class="why_section layout_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="full">
+                            <h1>Login</h1>
+
+                            <form action="/login" class="mt-4" method="POST">
+                                <% if(typeof message !== 'undefined') { %>
+
+                                <p style="color: red"><%= message %></p>
+
+                                <% } %>
+                                <fieldset>
+                                    <input
+                                        type="text"
+                                        placeholder="username"
+                                        name="username"
+                                        required
+                                    />
+                                    <input
+                                        type="password"
+                                        placeholder="password"
+                                        name="password"
+                                        required
+                                    />
+                                </fieldset>
+                                <input type="submit" value="เข้าสู่ระบบ" />
+                                <p></p>
+                                <span>ถ้ายังไม่เป็นสมาชิก ? </span
+                                ><a href="/form-regis">สมัครสมาชิก</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end why section -->
+
+        <%- include('components/footer.ejs') %>
+    </body>
+</html>
