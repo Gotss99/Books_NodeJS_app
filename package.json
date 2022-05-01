@@ -7,10 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "nodemon ./bin/www"
     },
-    "keywords": [
-        "example",
-        "heroku"
-    ],
+    "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {

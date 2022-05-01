@@ -25,10 +25,10 @@
                        <a class="nav-link" href="#">Blog</a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" href="#">Contact</a>
+                       <a class="nav-link" href="/contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" href="#">
+                       <a class="nav-link" href="/cart">
                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                              <g>
                                 <g>
@@ -52,18 +52,39 @@
                              </g>
                             
                           </svg>
+                          <% if(typeof amount !== 'undefined') { %>
+                           <% Object.values(amount ).forEach((item)=> { %>
+                           <span style="color: red;"><%= item.amount  %> </span>
+                           <% }) %> 
+                           <% } %> 
+                
                        </a>
                     </li>
 
-                    
+<!--                     
                     <form class="form-inline">
                        <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                        <i class="fa fa-search" aria-hidden="true"></i>
                        </button>
-                    </form>
-                    <li class="nav-item">
-                     <a class="nav-link" href="/books">Login</a>
-                  </li>
+                    </form> -->
+                    <% if(typeof username !== 'undefined') { %>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> 
+                           <span class="nav-label"><%= username  %> 
+                              <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                           <li><a href="#">ข้อมูลส่วนตัว</a></li>
+                           <li><a href="/logout">ออกจากระบบ</a></li>
+                        </ul>
+                     </li>
+                 
+       
+                     <% }else { %> 
+                     <li class="nav-item">
+                        <a class="nav-link" href="/books">Login</a>
+                     </li>
+                     <% } %> 
                  </ul>
               </div>
            </nav>

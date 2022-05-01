@@ -1,6 +1,7 @@
 const express = require("express");
 
 const Books = require("../models/books");
+const Cart = require("../models/cart");
 
 const multer = require("multer"); // module อัพโหลดไฟล์
 
@@ -24,11 +25,27 @@ const upload = multer({
 
 
 router.get("/books/", (req, res) => {
-   
-    if (req.session.login) {
+   const username = req.session.username
+    if (username) {
 
         Books.find().exec((err, doc) => {
-            res.render("../views/books/index", { books: doc, admin:req.session.username }); // ส่งค่า property กลับไป
+            Cart.aggregate([
+                {
+                    $match: { username: req.session.username }
+                },
+                {
+                    $group: {
+                        _id: null,
+                        amount: { $sum: "$amount" }
+                    }
+               
+                },
+                
+            ]).exec((err, data) => {
+                // console.log(doc);
+                res.render("../views/books/index", { books: doc, amount: data, username: username }); // ส่งค่า property กลับไป
+            });
+        
              
         })
         // return res.send({ data: doc})

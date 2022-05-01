@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
         req.session.login = true
         req.session.cookie.maxAge = timeExpire
       
-        res.redirect("/books/");
+        res.redirect("/");
       } else {
         res.render('form-login', { message: 'Username or Password incorrect'});
       }
@@ -74,7 +74,7 @@ router.get("/logout", (req, res) => {
 
     //ลบ session
     req.session.destroy((err) => {
-        res.redirect("/books/");
+        res.redirect("/");
     })
 
 
